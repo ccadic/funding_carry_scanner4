@@ -1,0 +1,48 @@
+{
+  "positions": [
+    {
+      "status": "closed",
+      "leg_mode": "perp_perp",
+      "symbol": "ACT/USDT:USDT",
+      "long_exchange": "bybit",
+      "short_exchange": "okx",
+      "entry_exchange": null,
+      "hedge_exchange": null,
+      "route_label": "LONG bybit / SHORT okx",
+      "amount": 8563.0,
+      "usd_size": 125.0,
+      "alloc_pct": 25.0,
+      "spread_pct_cycle": 0.526321,
+      "net_spread_pct": 0.256321,
+      "rank_at_open": 1,
+      "sniper_tag": "sniper_preferred",
+      "opened_at": null,
+      "fee_total_pct": 0.21000000000000002,
+      "slippage_estimated_pct": 0.06,
+      "cost_total_pct": 0.27,
+      "close_reason": "signal_disappeared"
+    },
+    {
+      "status": "closed",
+      "leg_mode": "perp_perp",
+      "symbol": "ACT/USDT:USDT",
+      "long_exchange": "okx",
+      "short_exchange": "bybit",
+      "entry_exchange": null,
+      "hedge_exchange": null,
+      "route_label": "LONG okx / SHORT bybit",
+      "amount": 8752.0,
+      "usd_size": 125.0,
+      "alloc_pct": 25.0,
+      "spread_pct_cycle": 0.277966,
+      "net_spread_pct": 0.02376440881148706,
+      "rank_at_open": 1,
+      "sniper_tag": "sniper_preferred",
+      "opened_at": null,
+      "fee_total_pct": 0.21000000000000002,
+      "slippage_estimated_pct": 0.044201591188512905,
+      "cost_total_pct": 0.25420159118851293,
+      "close_reason": "signal_disappeared"
+    }
+  ]
+}

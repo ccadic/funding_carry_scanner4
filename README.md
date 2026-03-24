@@ -1,55 +1,37 @@
-# funding_carry_scanner4
+# Funding Carry V4.4.3
 
-le funding rate
+Version complète avec :
+- calibration automatique du slippage réel
+- adaptation dynamique des frais par exchange
+- dashboard aussi détaillé que la V4.4.2
+- bot live / dry-run
+- auto-close
+- funding sniper
+- websocket live
+- scan multi-thread
+- backtest multi-mode
 
-Toutes les 8h :
+## Installation
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
 
-les longs paient les shorts
-OU
-les shorts paient les longs
-💡 L’idée paraît évidente
+## Lancer
+```bash
+python ws_server.py
+python run_bot.py
+streamlit run funding_carry_app.py
+```
 
-“Pourquoi ne pas encaisser ce flux… sans prendre de risque ?”
+## Backtest
+```bash
+python -m funding_bot.backtest --exchange binance --symbol BTC/USDT:USDT --mode perp_perp --limit 300
+```
 
-Donc j’ai construit ça :
-
-👉 LONG sur un exchange
-👉 SHORT sur un autre
-
-Même actif. Même taille.
-
-👉 Zéro exposition au prix.
-
-📈 Sur le papier ?
-
-C’est magique.
-
-marché neutre
-cash flow positif
-scalable
-
-👉 un rêve de hedge fund.
-
-🧨 En réalité ?
-
-J’ai codé un robot complet pour tester.
-
-Nom de code :
-
-👉 Funding Carry Scanner V4.4.3
-
-⚙️ Ce que fait le robot
-
-Pas un simple scanner.
-
-👉 Un laboratoire de microstructure en temps réel
-
-Il :
-
-scanne 100+ paires
-compare Binance / Bybit / OKX
-calcule le spread réel
-intègre les frais
-mesure le slippage réel (pas théorique)
-ouvre / ferme automatiquement
-log tout
+## Nouvelles données
+- `data/slippage_log.csv`
+- `data/fee_log.csv`
+- coûts dynamiques par route dans le tableau des opportunités

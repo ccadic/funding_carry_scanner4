@@ -1,0 +1,63 @@
+from __future__ import annotations
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+def _b(n,d):
+    v = os.getenv(n)
+    return d if v is None else v.strip().lower() in {"1","true","yes","on"}
+
+def _f(n,d):
+    v = os.getenv(n)
+    return d if v in (None,"") else float(v)
+
+def _i(n,d):
+    v = os.getenv(n)
+    return d if v in (None,"") else int(v)
+
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN","")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID","")
+
+EXCHANGES = [x.strip() for x in os.getenv("EXCHANGES","binance,bybit,okx").split(",") if x.strip()]
+QUOTE = os.getenv("QUOTE","USDT")
+SYMBOL_LIMIT_PER_EXCHANGE = _i("SYMBOL_LIMIT_PER_EXCHANGE",80)
+SCAN_WORKERS = _i("SCAN_WORKERS",8)
+
+TRADING_MODE = os.getenv("TRADING_MODE","perp_perp").strip().lower()
+SPOT_EXCHANGE = os.getenv("SPOT_EXCHANGE","binance").strip().lower()
+
+MIN_SPREAD = _f("MIN_SPREAD",0.0003)
+MIN_NET_SPREAD_PCT = _f("MIN_NET_SPREAD_PCT",0.02)
+DEFAULT_TAKER_FEE_PCT = _f("DEFAULT_TAKER_FEE_PCT",0.10)
+DEFAULT_SLIPPAGE_PCT = _f("DEFAULT_SLIPPAGE_PCT",0.03)
+
+POSITION_SIZE_USD = _f("POSITION_SIZE_USD",100.0)
+MAX_CONCURRENT_POSITIONS = _i("MAX_CONCURRENT_POSITIONS",5)
+MAX_ALLOC_PCT_PER_TRADE = _f("MAX_ALLOC_PCT_PER_TRADE",25.0)
+MIN_SCORE_TO_ALLOCATE = _f("MIN_SCORE_TO_ALLOCATE",-999.0)
+
+DRY_RUN = _b("DRY_RUN",True)
+SCAN_INTERVAL_SECONDS = _i("SCAN_INTERVAL_SECONDS",300)
+DEFAULT_HISTORY_LIMIT = _i("DEFAULT_HISTORY_LIMIT",120)
+
+COOLDOWN_SECONDS = _i("COOLDOWN_SECONDS",3600)
+ONLY_EXECUTABLE = _b("ONLY_EXECUTABLE",True)
+
+SNIPER_ENABLED = _b("SNIPER_ENABLED",True)
+SNIPER_WINDOW_BEFORE_SECONDS = _i("SNIPER_WINDOW_BEFORE_SECONDS",600)
+SNIPER_EXIT_AFTER_SECONDS = _i("SNIPER_EXIT_AFTER_SECONDS",120)
+
+AUTO_CLOSE_ENABLED = _b("AUTO_CLOSE_ENABLED",True)
+AUTO_CLOSE_MIN_NET_SPREAD_PCT = _f("AUTO_CLOSE_MIN_NET_SPREAD_PCT",-0.05)
+AUTO_CLOSE_MAX_RANK = _i("AUTO_CLOSE_MAX_RANK",8)
+AUTO_CLOSE_ON_SIGNAL_DEGRADATION = _b("AUTO_CLOSE_ON_SIGNAL_DEGRADATION",True)
+
+UI_AUTO_REFRESH_SECONDS = _i("UI_AUTO_REFRESH_SECONDS",10)
+
+WS_ENABLED = _b("WS_ENABLED",True)
+WS_URL = os.getenv("WS_URL","ws://127.0.0.1:8765")
+
+SLIPPAGE_LOOKBACK = _i("SLIPPAGE_LOOKBACK",50)
+SLIPPAGE_PERCENTILE = _i("SLIPPAGE_PERCENTILE",75)
+
+DATA_DIR = "data"

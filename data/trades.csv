@@ -1,0 +1,5 @@
+action,leg_mode,symbol,long_exchange,short_exchange,amount,usd_size,dry_run,expected_price_leg1,expected_price_leg2,executed_price_leg1,executed_price_leg2,spread_pct_cycle,net_spread_pct,decision,alloc_pct,sniper_tag,route_label,fee_total_pct,slippage_estimated_pct,cost_total_pct,logged_at,close_reason
+open,perp_perp,ACT/USDT:USDT,bybit,okx,8563.0,125.0,True,0.014597,0.01459,0.014597,0.01459,0.526321,0.256321,Exploitable,25.0,sniper_preferred,LONG bybit / SHORT okx,0.21,0.06,0.27,2026-03-24T00:02:16.372758+00:00,
+close,perp_perp,ACT/USDT:USDT,bybit,okx,8563.0,,True,,,,,0.526321,0.256321,auto_close,,,,,,,2026-03-24T00:07:59.002092+00:00,signal_disappeared
+open,perp_perp,ACT/USDT:USDT,okx,bybit,8752.0,125.0,True,0.01427,0.014282,0.01427,0.014282,0.277966,0.023764408811487,Exploitable,25.0,sniper_preferred,LONG okx / SHORT bybit,0.21,0.0442015911885129,0.2542015911885129,2026-03-24T08:14:11.942836+00:00,
+close,perp_perp,ACT/USDT:USDT,okx,bybit,8752.0,,True,,,,,0.277966,0.02376440881148706,auto_close,,,,,,,2026-03-24T08:19:49.704520+00:00,signal_disappeared
