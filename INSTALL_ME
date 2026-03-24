@@ -1,0 +1,141 @@
+Funding Carry Scanner V4.4.3
+
+Arbitrage funding crypto multi-exchange avec calibration dynamique du slippage et frais réels.
+
+🧠 Principe
+
+Le bot détecte des opportunités d’arbitrage funding :
+
+LONG sur un exchange
+SHORT sur un autre
+même actif
+
+👉 objectif : capter le funding rate avec exposition neutre.
+
+⚙️ Fonctionnalités
+Scan multi-exchange (Binance, Bybit, OKX)
+Mode perp_perp et spot_perp
+Calcul réel :
+spread funding
+frais taker
+slippage calibré
+Auto-calibration :
+slippage_log.csv
+fee_log.csv
+Portfolio engine
+Backtest intégré
+Dashboard Streamlit temps réel (V4.4.3)
+Auto-refresh zone données uniquement
+📦 Installation
+1. Cloner / copier le projet
+cd ~/your_path
+git clone <repo> funding_carry_443
+cd funding_carry_443
+
+ou simplement copier le dossier.
+
+2. Créer un environnement Python
+python3 -m venv venv
+source venv/bin/activate
+3. Installer les dépendances
+pip install -r requirements.txt
+
+Si pas de fichier requirements :
+
+pip install ccxt pandas numpy streamlit websockets
+▶️ Lancement
+🔹 1. Lancer le bot
+python run_bot.py
+
+👉 génère les fichiers dans /data :
+
+opportunities.csv
+pnl_live.csv
+portfolio_positions.csv
+live_feed.jsonl
+latency_metrics.csv
+slippage_log.csv (auto)
+fee_log.csv (auto)
+🔹 2. Lancer le dashboard
+streamlit run funding_carry_app.py
+
+👉 accès :
+
+http://localhost:8501
+🧪 Backtest
+python -m funding_bot.backtest \
+  --exchange binance \
+  --symbol BTC/USDT:USDT \
+  --mode perp_perp \
+  --limit 300
+⚙️ Configuration UI
+
+Dans le panneau gauche :
+
+Paramètres clés
+Seuil mini spread (%)
+ex: 0.005 → filtre opportunités
+Frais taker défaut (%)
+ex: 0.10 (sera recalibré automatiquement)
+Slippage défaut (%)
+ex: 0.03
+Net mini par cycle (%)
+ex: 0.005
+Auto-refresh zone données
+rafraîchit uniquement les données (safe UI)
+📊 Calibration automatique
+
+Le système apprend en live :
+
+slippage_log.csv
+différence prix attendu vs exécuté
+fee_log.csv
+frais réellement appliqués
+
+👉 permet :
+
+ajustement dynamique par exchange
+suppression des faux signaux
+📁 Structure projet
+funding_carry_443/
+│
+├── run_bot.py
+├── funding_carry_app.py
+│
+├── funding_bot/
+│   ├── scanner.py
+│   ├── portfolio_engine.py
+│   ├── pnl_tracker.py
+│   ├── funding_sniper.py
+│   ├── execution_engine.py
+│   ├── logger.py
+│   ├── backtest.py
+│
+├── data/
+│   ├── opportunities.csv
+│   ├── pnl_live.csv
+│   ├── slippage_log.csv
+│   ├── fee_log.csv
+│
+└── requirements.txt
+⚠️ Important
+
+👉 Au début :
+
+pas de slippage_log.csv
+pas de fee_log.csv
+
+✔️ c’est normal
+👉 ils apparaissent après les premiers trades
+
+💡 Conseils
+Laisser tourner 1–2h pour calibration
+Baisser progressivement les seuils
+Observer :
+net_spread_pct
+days_break_even
+🚨 Disclaimer
+Pas un conseil financier
+Marché très efficient
+Slippage critique
+Arbitrage rarement “gratuit”
